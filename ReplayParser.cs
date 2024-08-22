@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using OsuReplayAnalyser.SevenZip;
 using OsuReplayAnalyser.Enums;

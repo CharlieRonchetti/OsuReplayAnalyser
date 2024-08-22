@@ -1,4 +1,3 @@
-using System.Security.Cryptography;
 using OsuReplayAnalyser.Enums;
 using ScottPlot;
 
