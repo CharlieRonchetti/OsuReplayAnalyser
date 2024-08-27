@@ -1,5 +1,10 @@
 
 # <p align=center>Osu Replay Analyser</p>
+<p align=center>
+  <a href="https://www.codefactor.io/repository/github/charlieronchetti/osureplayanalyser/overview/master"><img src="https://www.codefactor.io/repository/github/charlieronchetti/osureplayanalyser/badge/master" alt="CodeFactor" /></a>
+  <a href="https://github.com/CharlieRonchetti/OsuReplayAnalyser/releases/tag/v1.0.0"><img alt="Version Badge" src="https://img.shields.io/badge/version-v1.0.0-blue"></a>
+  <img alt="GitHub commits since latest release" src="https://img.shields.io/github/commits-since/CharlieRonchetti/OsuReplayAnalyser/latest">
+</p>
 <p align=center>A quick to setup tool for analysing osu!standard replay files (.osr)</p>
 
 ## Getting Started
