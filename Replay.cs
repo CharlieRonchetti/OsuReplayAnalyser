@@ -1,6 +1,5 @@
 namespace OsuReplayAnalyser;
 
-using System.ComponentModel.DataAnnotations;
 using OsuReplayAnalyser.Enums;
 
 

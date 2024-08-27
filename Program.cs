@@ -1,14 +1,16 @@
 ﻿namespace OsuReplayAnalyser;
-using System.IO;
+using OsuReplayAnalyser.Beatmaps;
 
 class Program
 {
     static void Main(string[] args)
     {
-        HoldTimes.GenerateHoldTimes();
+        //HoldTimes.GenerateHoldTimes();
         SongsDB songData = SongsDB.Deserialize();
-        songData.Generate();
-        Console.WriteLine(songData.SongHashes.Count);
+        //songData.Generate();
+        //Console.WriteLine(songData.SongHashes.Count);
+
+        BeatmapParser.ParseBeatmap(songData.SongHashes["27f9c5f8496bfdab8623e3be6cf73f25"]);
 
         SongsDB.Serialize(songData);
 

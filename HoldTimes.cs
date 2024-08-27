@@ -155,6 +155,7 @@ public static class HoldTimes {
             Console.WriteLine("Parsing file {0}: ", currentFileName);
             Replay decodedReplay = ReplayParser.ParseReplay(replay);
             Analyze(decodedReplay.ReplayFrames, currentFileName);
+            Console.WriteLine("Beatmap MD5 hash: " + decodedReplay.BeatmapMD5Hash);
         }
     }
 }
