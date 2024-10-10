@@ -1,8 +1,10 @@
-namespace OsuReplayAnalyser.Enums;
-
-public enum Gamemode {
-    Standard,
-    Taiko,
-    CatchTheBeat,
-    Mania,
+namespace OsuReplayAnalyser.Enums
+{
+    public enum Gamemode
+    {
+        Standard,
+        Taiko,
+        CatchTheBeat,
+        Mania,
+    }
 }
