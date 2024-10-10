@@ -5,15 +5,10 @@ using OsuReplayAnalyser.Enums;
 
 public static class BeatmapParser {
     public static Beatmap ParseBeatmap(string filePath) {
-        // Keep a variable of current section
-        // Loop through each line in file
-        // If the line is equal to a section header, update current section variable
-        // Call a function to check the value of current section (current section is of type enum)
-        // Call a function depending on the value of current section e.g. ParseGeneralSection
-        // ParseGeneralSection is a switch/case of all possible values for that section
-        // Repeat until end of file
-
-        Beatmap parsedBeatmap = new();
+        Beatmap parsedBeatmap = new()
+        {
+            FilePath = filePath
+        };
 
         StreamReader sr = new(filePath);
         string? line;
@@ -35,6 +30,12 @@ public static class BeatmapParser {
                     break;
                 case "[Difficulty]":
                     currentSection = BeatmapSections.Difficulty;
+                    break;
+                case "[Events]":
+                    currentSection = BeatmapSections.Events;
+                    break;
+                case "[TimingPoints]":
+                    currentSection = BeatmapSections.TimingPoints;
                     break;
             }
 
@@ -58,6 +59,9 @@ public static class BeatmapParser {
                 break;
             case BeatmapSections.Difficulty:
                 ParseDifficultySection(line, parsedBeatmap);
+                break;
+            case BeatmapSections.Events:
+                ParseEventSection(line, parsedBeatmap);
                 break;
         }
     }
@@ -203,5 +207,43 @@ public static class BeatmapParser {
                     break;
             }
         }
+    }
+
+    private static void ParseEventSection (string line, Beatmap parsedBeatmap) {
+        string[] splitLine = line.Split(',');
+        if (splitLine.Length > 2) {
+            if (int.Parse(splitLine[0]) == 0) { // Parse background
+                parsedBeatmap.Background = ParseBackgroundAndVideo(splitLine);
+            }
+            else if (int.Parse(splitLine[0]) == 1) { // Parse video
+                parsedBeatmap.Video = ParseBackgroundAndVideo(splitLine);
+            }
+            else if (int.Parse(splitLine[0]) == 2) { // Parse break times
+                Break breakSection = new()
+                {
+                    StartTime = int.Parse(splitLine[1]),
+                    EndTime = int.Parse(splitLine[2])
+                };
+                parsedBeatmap.Breaks.Add(breakSection);
+            }
+        }
+    }
+
+    private static BeatmapEvent ParseBackgroundAndVideo (string[] splitLine) {
+        BeatmapEvent bg = new()
+        {
+            StartTime = int.Parse(splitLine[1]),
+            FileName = splitLine[2]
+        };
+
+        if (splitLine.Length > 3) {
+            bg.XOffset = int.Parse(splitLine[3]); 
+        }
+
+        if (splitLine.Length > 4) {
+            bg.YOffset = int.Parse(splitLine[4]);
+        }
+        
+        return bg;
     }
 }

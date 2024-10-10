@@ -19,6 +19,4 @@ public class BeatmapGeneralData {
     public bool SpecialStyle { get; set; } = false;
     public bool WidescreenStoryboard { get; set; } = false;
     public bool SamplesMatchPlaybackRate { get; set; } = false;
-
-
 }
