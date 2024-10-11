@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using OsuReplayAnalyser.ViewModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace OsuReplayAnalyser
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }
