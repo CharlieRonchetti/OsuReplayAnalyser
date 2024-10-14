@@ -12,8 +12,4 @@
 	<PackageReference Include="Material.Icons.WPF" Version="2.1.10" />
 	<PackageReference Include="ScottPlot" Version="5.0.37" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="View\" />
-  </ItemGroup>
 </Project>
