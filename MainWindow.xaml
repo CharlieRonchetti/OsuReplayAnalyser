@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:OsuReplayAnalyser"
         mc:Ignorable="d"
         Title="Osu Replay Analyser" Height="450" Width="800">
-
+    
     <Grid x:Name="MainGrid" Background="#121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
@@ -20,12 +20,18 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="0 5">
-                <materialIcons:MaterialIcon Kind="AlphaSCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
-                <Button Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="HoldTimes" BorderThickness="0">
+                <Button Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="StatsView" BorderThickness="0">
+                    <materialIcons:MaterialIcon Kind="AlphaSCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
+                </Button>
+                <Button Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="HoldTimesView" BorderThickness="0">
                     <materialIcons:MaterialIcon Kind="EyeCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
                 </Button>
-                <materialIcons:MaterialIcon Kind="CloseCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
-                <materialIcons:MaterialIcon Kind="SkipPreviousCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
+                <Button Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="MissView" BorderThickness="0">
+                    <materialIcons:MaterialIcon Kind="CloseCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
+                </Button>
+                <Button Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="ReplayView" BorderThickness="0">
+                    <materialIcons:MaterialIcon Kind="SkipPreviousCircleOutline" Foreground="White" Width="50" Margin="0 5"/>
+                </Button>
             </StackPanel>
             <StackPanel Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
                 <materialIcons:MaterialIcon Kind="Cog" Foreground="White" Width="50" Margin="0 10"/>
@@ -36,7 +42,7 @@
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Background="DimGray" Margin="0" HorizontalAlignment="Left"/>
         </StackPanel>
 
-        <Button Grid.Column="2" Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="Landing" BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding LandingButtonVisibility}">
+        <Button Grid.Column="2" Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="LandingView" BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding LandingButtonVisibility}">
             <materialIcons:MaterialIcon Kind="KeyboardBackspace" Foreground="White" Width="30" Margin="5 5"/>
         </Button>
         <ContentControl Content="{Binding SelectedViewModel}" Grid.Column="2" ></ContentControl>

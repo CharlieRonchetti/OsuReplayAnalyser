@@ -9,8 +9,17 @@
         <DataTemplate DataType="{x:Type viewmodels:LandingPageViewModel}">
             <views:LandingPageView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:StatsViewModel}">
+            <views:StatsView/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:HoldTimesViewModel}">
             <views:HoldTimesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:MissViewModel}">
+            <views:MissView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:ReplayViewModel}">
+            <views:ReplayView/>
         </DataTemplate>
 
         <Style x:Key="FocusVisual">

@@ -37,21 +37,39 @@ namespace OsuReplayAnalyser.ViewModel
         }
 
 
-        private string? CurrentView = "Landing";
+        private string? CurrentView = "LandingView";
 
         public void UpdateView(object view)
         {
             Debug.WriteLine(view.ToString());
-            if (view.ToString() == "HoldTimes")
-            {
-                this.SelectedViewModel = new HoldTimesViewModel();
-                this.LandingButtonVisibility = Visibility.Visible; 
-                this.CurrentView = view.ToString();
-            }
-            else if (view.ToString() == "Landing")
-            {
+            if (view.ToString() == "LandingView")
+            { 
                 this.SelectedViewModel = new LandingPageViewModel();
                 this.LandingButtonVisibility = Visibility.Collapsed;
+                this.CurrentView = view.ToString();
+            }
+            else if (view.ToString() == "StatsView")
+            {
+                this.SelectedViewModel = new StatsViewModel();
+                this.LandingButtonVisibility = Visibility.Visible;
+                this.CurrentView = view.ToString();
+            }
+            else if (view.ToString() == "HoldTimesView")
+            {
+                this.SelectedViewModel = new HoldTimesViewModel();
+                this.LandingButtonVisibility = Visibility.Visible;
+                this.CurrentView = view.ToString();
+            }
+            else if (view.ToString() == "MissView")
+            {
+                this.SelectedViewModel = new MissViewModel();
+                this.LandingButtonVisibility = Visibility.Visible;
+                this.CurrentView = view.ToString();
+            }
+            else if (view.ToString() == "ReplayView")
+            {
+                this.SelectedViewModel = new ReplayViewModel();
+                this.LandingButtonVisibility = Visibility.Visible;
                 this.CurrentView = view.ToString();
             }
         }

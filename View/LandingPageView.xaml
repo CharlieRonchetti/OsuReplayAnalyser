@@ -14,7 +14,9 @@
                     <Setter Property="Margin" Value="0,10,0,0"/>
                 </Style>
             </StackPanel.Resources>
-            <materialIcons:MaterialIcon Kind="MagnifyExpand" Foreground="White" Width="70"/>
+            <Button Style="{DynamicResource TransparentButton}" Command="{Binding OpenReplayDirectoryCommand}" BorderThickness="0" Width="70">
+                <materialIcons:MaterialIcon Kind="MagnifyExpand" Foreground="White" Width="70"/>
+            </Button>
             <TextBlock FontSize="16" FontFamily="Helvetica" Foreground="White" HorizontalAlignment="Center">No Replay Loaded</TextBlock>
             <TextBlock FontSize="16" FontFamily="Helvetica" Foreground="DimGray" HorizontalAlignment="Center">Click the icon or press F2 to load a replay</TextBlock>
         </StackPanel>
