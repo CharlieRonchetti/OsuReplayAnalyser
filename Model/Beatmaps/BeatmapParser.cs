@@ -10,7 +10,8 @@ namespace OsuReplayAnalyser.Model.Beatmaps
         {
             Beatmap parsedBeatmap = new()
             {
-                FilePath = filePath
+                FilePath = filePath,
+                SongName = Path.GetFileNameWithoutExtension(filePath)
             };
 
             StreamReader sr = new(filePath);
