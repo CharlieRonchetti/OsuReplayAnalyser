@@ -231,15 +231,16 @@ namespace OsuReplayAnalyser.Model.Beatmaps
         private static void ParseEventSection(string line, Beatmap parsedBeatmap)
         {
             string[] splitLine = line.Split(',');
-            if (splitLine.Length > 2)
+
+            if (splitLine.Length > 2 && int.TryParse(splitLine[0], out _))
             {
                 if (int.Parse(splitLine[0]) == 0)
                 { // Parse background
-                    parsedBeatmap.Background = ParseBackgroundAndVideo(splitLine);
+                    parsedBeatmap.Background = ParseBackgroundAndVideo(splitLine, parsedBeatmap);
                 }
                 else if (int.Parse(splitLine[0]) == 1)
                 { // Parse video
-                    parsedBeatmap.Video = ParseBackgroundAndVideo(splitLine);
+                    parsedBeatmap.Video = ParseBackgroundAndVideo(splitLine, parsedBeatmap);
                 }
                 else if (int.Parse(splitLine[0]) == 2)
                 { // Parse break times
@@ -253,12 +254,13 @@ namespace OsuReplayAnalyser.Model.Beatmaps
             }
         }
 
-        private static BeatmapEvent ParseBackgroundAndVideo(string[] splitLine)
+        private static BeatmapEvent ParseBackgroundAndVideo(string[] splitLine, Beatmap parsedBeatmap)
         {
             BeatmapEvent bg = new()
             {
                 StartTime = int.Parse(splitLine[1]),
-                FileName = splitLine[2]
+                FileName = splitLine[2],
+                FilePath = Path.GetDirectoryName(parsedBeatmap.FilePath) + "\\" + splitLine[2].Replace("\"", "")
             };
 
             if (splitLine.Length > 3)
