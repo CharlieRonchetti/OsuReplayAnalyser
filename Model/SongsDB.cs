@@ -1,7 +1,9 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace OsuReplayAnalyser.Model
 {
@@ -21,6 +23,8 @@ namespace OsuReplayAnalyser.Model
             // Loop through all directories (and sub directories) in the songs directory to find all .osu files
             IEnumerable<string> songFiles = Directory.EnumerateFiles(songDirectory, "*.osu", SearchOption.AllDirectories);
 
+            Debug.WriteLine("Adding new songs to SongsDB");
+
             foreach (string songFile in songFiles)
             {
                 // Skips any files that weren't modified since the last time this function was called
@@ -32,6 +36,7 @@ namespace OsuReplayAnalyser.Model
                 }
             }
 
+            Debug.WriteLine("Added new songs to SongsDB");
             TimeOfLastBeatmapsProcess = DateTime.Now;
         }
 
@@ -39,11 +44,15 @@ namespace OsuReplayAnalyser.Model
         {
             string jsonString = JsonSerializer.Serialize(songHashes);
             File.WriteAllText("D:\\Code\\software\\OsuReplayAnalyser\\output\\songsdb.json", jsonString);
+
+            Debug.WriteLine("Serialized SongsDB");
         }
 
         public static SongsDB Deserialize()
         {
-            string objectPath = Directory.GetCurrentDirectory() + "/output/songsdb.json";
+            // Change this to (also in serialize method above) to be based off cwd, its currently hard coded because debug
+            // in Visual Studio runs from the /bin/debug file which deletes songsdb.json everytime and so the object can't be deserialized
+            string objectPath = "D:\\Code\\software\\OsuReplayAnalyser\\output\\songsdb.json";
             SongsDB? songHashes = new();
 
             if (File.Exists(objectPath))
@@ -52,6 +61,8 @@ namespace OsuReplayAnalyser.Model
                 try
                 {
                     songHashes = JsonSerializer.Deserialize<SongsDB>(jsonString);
+                    Debug.WriteLine("Deserialized SongsDB");
+
                 }
                 catch (ArgumentNullException e)
                 {

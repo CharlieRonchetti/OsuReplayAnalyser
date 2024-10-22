@@ -7,11 +7,11 @@
         xmlns:local="clr-namespace:OsuReplayAnalyser"
         mc:Ignorable="d"
         Title="Osu Replay Analyser" Height="450" Width="800">
-    
+
     <Grid x:Name="MainGrid" Background="#121212">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="70" />
-            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid>
@@ -42,8 +42,8 @@
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Background="DimGray" Margin="0" HorizontalAlignment="Left"/>
         </StackPanel>
 
-        <Button Grid.Column="2" Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="LandingView" BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding LandingButtonVisibility}">
-            <materialIcons:MaterialIcon Kind="KeyboardBackspace" Foreground="White" Width="30" Margin="5 5"/>
+        <Button Panel.ZIndex="1000" Grid.Column="2" Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="LandingView" BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding LandingButtonVisibility}">
+            <materialIcons:MaterialIcon Kind="CloseThick" Foreground="White" Width="30" Margin="5 5"/>
         </Button>
         <ContentControl Content="{Binding SelectedViewModel}" Grid.Column="2" ></ContentControl>
     </Grid>

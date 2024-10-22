@@ -1,5 +1,6 @@
 using OsuReplayAnalyser.Enums;
 using OsuReplayAnalyser.SevenZip;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 
@@ -51,38 +52,42 @@ namespace OsuReplayAnalyser.Model.Replays
             decodedReplay.Timestamp = new DateTime(reader.ReadInt64());
 
             int replayLength = reader.ReadInt32(); // Length in bytes of compressed data
-            byte[] replayDataBytes = reader.ReadBytes(replayLength); // Length in bytes of compressed data
-            byte[] decompressedReplayBytes = LZMAHelper.Decompress(replayDataBytes);
-            string decompressedReplayString = Encoding.ASCII.GetString(decompressedReplayBytes);
-            List<ReplayFrame> replayFrames = [];
-
-            // Create a ReplayFrame object for each frame in the replay, delimited by ','
-            // Frames are formated as follows: w | x | y | z, where:
-            //  w = time in milliseconds since the previous action
-            //  x = x-coord of the cursor from 0-512
-            //  y = y-coord of the cursor from 0-384
-            //  z = bitwise combination of buttons pressed, key1 = 5, key2 = 10
-            foreach (string frame in decompressedReplayString.Split(','))
+            if(replayLength > 0)
             {
-                if (!string.IsNullOrEmpty(frame))
-                {
-                    string[] frameData = frame.Split('|');
+                byte[] replayDataBytes = reader.ReadBytes(replayLength); // Length in bytes of compressed data
+                byte[] decompressedReplayBytes = LZMAHelper.Decompress(replayDataBytes);
+                string decompressedReplayString = Encoding.ASCII.GetString(decompressedReplayBytes);
 
-                    if (frameData[0] == "-12345")
+                List<ReplayFrame> replayFrames = [];
+
+                // Create a ReplayFrame object for each frame in the replay, delimited by ','
+                // Frames are formated as follows: w | x | y | z, where:
+                //  w = time in milliseconds since the previous action
+                //  x = x-coord of the cursor from 0-512
+                //  y = y-coord of the cursor from 0-384
+                //  z = bitwise combination of buttons pressed, key1 = 5, key2 = 10
+                foreach (string frame in decompressedReplayString.Split(','))
+                {
+                    if (!string.IsNullOrEmpty(frame))
                     {
-                        decodedReplay.Seed = int.Parse(frameData[3]);
-                    }
-                    else
-                    {
-                        replayFrames.Add(new ReplayFrame(int.Parse(frameData[0]), float.Parse(frameData[1]), float.Parse(frameData[2]), int.Parse(frameData[3])));
+                        string[] frameData = frame.Split('|');
+
+                        if (frameData[0] == "-12345")
+                        {
+                            decodedReplay.Seed = int.Parse(frameData[3]);
+                        }
+                        else
+                        {
+                            replayFrames.Add(new ReplayFrame(int.Parse(frameData[0]), float.Parse(frameData[1]), float.Parse(frameData[2]), int.Parse(frameData[3])));
+                        }
                     }
                 }
+
+                decodedReplay.ReplayFrames = replayFrames;
             }
-
-            decodedReplay.ReplayFrames = replayFrames;
-
-            /* foreach(ReplayFrame frame in replayFrames) {
-                Console.WriteLine(frame.ToString());
+            
+            /*foreach(ReplayFrame frame in decodedReplay.ReplayFrames) {
+                Debug.WriteLine(frame.ToString());
             } */
 
             return decodedReplay;

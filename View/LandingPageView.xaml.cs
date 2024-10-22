@@ -24,7 +24,6 @@ namespace OsuReplayAnalyser.View
         public LandingPageView()
         {
             InitializeComponent();
-            DataContext = new LandingPageViewModel();
         }
     }
 }

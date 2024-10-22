@@ -7,6 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock FontSize="16" FontFamily="Helvetica" Foreground="DimGray" HorizontalAlignment="Center" VerticalAlignment="Center">Stats</TextBlock>
+        <Image Source="{Binding SelectedBeatmap.Background.FilePath}" Stretch="Fill">
+            <Image.Effect>
+                <BlurEffect Radius="0"/>
+            </Image.Effect>
+        </Image>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="6*" />
+            </Grid.RowDefinitions>
+            <!--Currently unused code for displaying ranking panel <Image Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Source="C:\Users\User\AppData\Local\osu!\Skins\❖Kaguya Shinomiya Skin v2.0/ranking-panel@2x.png" />-->
+        </Grid>
     </Grid>
 </UserControl>

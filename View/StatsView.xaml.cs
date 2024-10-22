@@ -24,7 +24,6 @@ namespace OsuReplayAnalyser.View
         public StatsView()
         {
             InitializeComponent();
-            DataContext = new StatsViewModel(); 
         }
     }
 }
