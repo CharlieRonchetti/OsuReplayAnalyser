@@ -48,7 +48,7 @@ namespace OsuReplayAnalyser.ViewModel
             Debug.WriteLine(SelectedReplay.MaxCombo);
             Debug.WriteLine(SelectedBeatmap.FilePath);
             Debug.WriteLine(SelectedBeatmap.Background.FilePath);
-            Debug.WriteLine(RowDefinition.HeightProperty);
+            Debug.WriteLine(SelectedBeatmap.SongName);
         }
     }
 }

@@ -43,7 +43,7 @@
         </StackPanel>
 
         <Button Panel.ZIndex="1000" Grid.Column="2" Style="{DynamicResource TransparentButton}" Command="{Binding UpdateViewCommand}" CommandParameter="LandingView" BorderThickness="0"  HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="{Binding LandingButtonVisibility}">
-            <materialIcons:MaterialIcon Kind="CloseThick" Foreground="White" Width="30" Margin="5 5"/>
+            <materialIcons:MaterialIcon Kind="KeyboardBackspace" Foreground="White" Width="30" Margin="5 5"/>
         </Button>
         <ContentControl Content="{Binding SelectedViewModel}" Grid.Column="2" ></ContentControl>
     </Grid>

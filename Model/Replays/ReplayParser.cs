@@ -52,6 +52,7 @@ namespace OsuReplayAnalyser.Model.Replays
             decodedReplay.Timestamp = new DateTime(reader.ReadInt64());
 
             int replayLength = reader.ReadInt32(); // Length in bytes of compressed data
+            Debug.WriteLine(replayLength);
             if(replayLength > 0)
             {
                 byte[] replayDataBytes = reader.ReadBytes(replayLength); // Length in bytes of compressed data

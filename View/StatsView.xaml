@@ -13,14 +13,21 @@
             </Image.Effect>
         </Image>
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="2*" />
-            </Grid.ColumnDefinitions>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="6*" />
             </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Rectangle Opacity=".8" Fill="#121212"/>
+            </Grid>
+            <Grid Grid.Row="1" Margin="10 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Opacity=".5" Fill="#121212" Margin="0 0 10 0"/>
+            </Grid>
             <!--Currently unused code for displaying ranking panel <Image Stretch="UniformToFill" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Source="C:\Users\User\AppData\Local\osu!\Skins\❖Kaguya Shinomiya Skin v2.0/ranking-panel@2x.png" />-->
         </Grid>
     </Grid>
