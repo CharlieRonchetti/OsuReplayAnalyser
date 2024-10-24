@@ -101,16 +101,6 @@ namespace OsuReplayAnalyser.Model.Replays
             double percent300 = replay.Count300 / totalObjects;
             double percent50 = replay.Count50 / totalObjects;
 
-            Debug.WriteLine("Count 300: " + replay.Count300);
-            Debug.WriteLine("Count 100: " + replay.Count100);
-            Debug.WriteLine("Count 50: " + replay.Count50);
-            Debug.WriteLine("Count Miss: " + replay.CountMiss);
-
-
-            Debug.WriteLine("Percent 300: " + percent300);
-            Debug.WriteLine("Percent 50: " + percent50);
-            Debug.WriteLine("Total Objects: " + totalObjects);
-
             if (replay.Count100 + replay.Count50 + replay.CountMiss == 0)
             {
                 return Grade.X;
