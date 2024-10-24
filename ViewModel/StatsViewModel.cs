@@ -20,7 +20,7 @@ namespace OsuReplayAnalyser.ViewModel
 {
     class StatsViewModel : ViewModelBase
     {
-        // VERY TEMP REMOVE FOR APP SETTINGS ASAP
+        // VERY TEMP REMOVE FOR APP SETTINGS ASAP!
         private string CurrentSkinFolder = "C:\\Users\\User\\AppData\\Local\\osu!\\Skins\\- # Nijika Ijichi - [Bocchi The Rock!]";
 
         private Replay? selectedReplay;
