@@ -40,6 +40,7 @@ namespace OsuReplayAnalyser.Model.Replays
             decodedReplay.CountGeki = reader.ReadInt16();
             decodedReplay.CountKatu = reader.ReadInt16();
             decodedReplay.CountMiss = reader.ReadInt16();
+            decodedReplay.ReplayGrade = CalculateReplayGrade(decodedReplay);
 
             decodedReplay.Score = reader.ReadInt32();
             decodedReplay.MaxCombo = reader.ReadInt16();
@@ -92,6 +93,48 @@ namespace OsuReplayAnalyser.Model.Replays
             } */
 
             return decodedReplay;
+        }
+
+        private static Grade CalculateReplayGrade(Replay replay)
+        {
+            double totalObjects = replay.Count300 + replay.Count100 + replay.Count50 + replay.CountMiss;
+            double percent300 = replay.Count300 / totalObjects;
+            double percent50 = replay.Count50 / totalObjects;
+
+            Debug.WriteLine("Count 300: " + replay.Count300);
+            Debug.WriteLine("Count 100: " + replay.Count100);
+            Debug.WriteLine("Count 50: " + replay.Count50);
+            Debug.WriteLine("Count Miss: " + replay.CountMiss);
+
+
+            Debug.WriteLine("Percent 300: " + percent300);
+            Debug.WriteLine("Percent 50: " + percent50);
+            Debug.WriteLine("Total Objects: " + totalObjects);
+
+            if (replay.Count100 + replay.Count50 + replay.CountMiss == 0)
+            {
+                return Grade.X;
+            }
+            else if (percent300 > 0.9 && percent50 < 0.01 && replay.CountMiss == 0)
+            {
+                return Grade.S;
+            }
+            else if (percent300 > 0.9 || (percent300 > 0.8 && replay.CountMiss == 0))
+            {
+                return Grade.A;
+            }
+            else if (percent300 > 0.8 || (percent300 > 0.7 && replay.CountMiss == 0))
+            {
+                return Grade.B;
+            }
+            else if (percent300 > 0.6)
+            {
+                return Grade.C;
+            }
+            else
+            {
+                return Grade.D;
+            }
         }
 
         private static string DecodeString(Stream stream, BinaryReader reader)

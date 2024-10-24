@@ -18,6 +18,7 @@ namespace OsuReplayAnalyser.Model.Replays
         public int Score { get; set; }
         public int MaxCombo { get; set; }
         public bool FullCombo { get; set; }
+        public Grade ReplayGrade { get; set; }
         public Mods Mods { get; set; }
         public string LifeGraph { get; set; } = string.Empty;
         public DateTime Timestamp { get; set; }
